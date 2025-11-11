@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "4468b8b7-7e5c-4240-a1dc-93d572445461",
+		"name": "VM-AUTOMOTIVEDESIGN JAVA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "38654170"
+	},
+	"item": [
+		{
+			"name": "User cases",
+			"item": [
+				{
+					"name": "Articulos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/articulos"
+					},
+					"response": []
+				},
+				{
+					"name": "Carrito",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[1,2,3]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/articulos/carrito"
+					},
+					"response": []
+				},
+				{
+					"name": "Detalle de articulo por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/articulos/4"
+					},
+					"response": []
+				},
+				{
+					"name": "Articulos por categoria FALTA IMPLEMENTAR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/articulos/4"
+					},
+					"response": []
+				},
+				{
+					"name": "Articulos por filtro FALTA IMPLEMENTAR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/articulos/4"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin cases",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Id\":1,\n    \"username\":\"mandarina\",\n    \"password\":\"mandarina\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Articulo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 9,\n    \"categorias\": [\n        {\n            \"id\": 2,\n            \"nombre\": \"Utiles\"\n        }\n    ],\n    \"colores\": [\n        {\n            \"id\": 1,\n            \"nombre\": \"Rojo Crimson\",\n            \"hex_value\": \"DC143C\"\n        },\n        {\n            \"id\": 2,\n            \"nombre\": \"Amarillo Khaki\",\n            \"hex_value\": \"F08080\"\n        },\n        {\n            \"id\": 3,\n            \"nombre\": \"Black\",\n            \"hex_value\": \"000000\"\n        },\n        {\n            \"id\": 4,\n            \"nombre\": \"Naranja Red\",\n            \"hex_value\": \"FF4500\"\n        },\n        {\n            \"id\": 5,\n            \"nombre\": \"Naranja Coral\",\n            \"hex_value\": \"FF7F50\"\n        }\n    ],\n    \"dimensiones_mm\": [\n        {\n            \"alto_mm\": 1200,\n            \"ancho_mm\": 800,\n            \"profundidad_mm\": 800\n        }\n    ],\n    \"imagenes\": [\n        {\n            \"path\": \"repisa_hotwhe.jpeg\"\n        }\n    ],\n    \"titulo\": \"Repisa Hot Wheels\",\n    \"detalle\": null,\n    \"descuento\": null,\n    \"precioLista\": 7000.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/articulos/update"
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar disponibilidad por ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": "http://localhost:8080/articulos/update/3"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Articulo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"categorias\": [\n        {\n            \"id\": 2,\n            \"nombre\": \"Utiles\"\n        },\n        {\n            \"id\": 4,\n            \"nombre\": \"Decoracion\"\n        }\n    ],\n    \"colores\": [\n        {\n            \"id\": 3,\n            \"nombre\": \"Black\",\n            \"hex_value\": \"000000\"\n        },\n        {\n            \"id\": 6,\n            \"nombre\": \"Gris oscuro\",\n            \"hex_value\": \"696969\"\n        }\n    ],\n    \"dimensiones_mm\": [\n        {\n            \"alto_mm\": 10,\n            \"ancho_mm\": 10,\n            \"profundidad_mm\": 10\n        },\n                {\n            \"alto_mm\": 20,\n            \"ancho_mm\": 20,\n            \"profundidad_mm\": 20\n        }\n    ],\n    \"imagenes\": [\n        {\n            \"path\": \"nuevo.jpeg\"\n        },\n                {\n            \"path\": \"nuevo2.jpeg\"\n        }\n    ],\n    \"titulo\": \"NUEVO\",\n    \"detalle\": \"NUEVO\",\n    \"precioLista\": 2500.0,\n    \"descuento\": 2.5,\n    \"disponible\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/articulos/new"
+					},
+					"response": [
+						{
+							"name": "Informacion completa",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"categorias\": [\n        {\n            \"id\": 2,\n            \"nombre\": \"Utiles\"\n        },\n        {\n            \"id\": 4,\n            \"nombre\": \"Decoracion\"\n        }\n    ],\n    \"colores\": [\n        {\n            \"id\": 3,\n            \"nombre\": \"Black\",\n            \"hex_value\": \"000000\"\n        },\n        {\n            \"id\": 6,\n            \"nombre\": \"Gris oscuro\",\n            \"hex_value\": \"696969\"\n        }\n    ],\n    \"dimensiones_mm\": [\n        {\n            \"alto_mm\": 10,\n            \"ancho_mm\": 10,\n            \"profundidad_mm\": 10\n        },\n                {\n            \"alto_mm\": 20,\n            \"ancho_mm\": 20,\n            \"profundidad_mm\": 20\n        }\n    ],\n    \"imagenes\": [\n        {\n            \"path\": \"nuevo.jpeg\"\n        },\n                {\n            \"path\": \"nuevo2.jpeg\"\n        }\n    ],\n    \"titulo\": \"NUEVO\",\n    \"detalle\": \"NUEVO\",\n    \"precioLista\": 2500.0,\n    \"descuento\": 2.5,\n    \"disponible\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/articulos/new"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Informacion NULL valida",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"categorias\": [\n        {\n            \"id\": 2,\n            \"nombre\": \"Utiles\"\n        },\n        {\n            \"id\": 4,\n            \"nombre\": \"Decoracion\"\n        }\n    ],\n    \"colores\": [\n        {\n            \"id\": 3,\n            \"nombre\": \"Black\",\n            \"hex_value\": \"000000\"\n        },\n        {\n            \"id\": 6,\n            \"nombre\": \"Gris oscuro\",\n            \"hex_value\": \"696969\"\n        }\n    ],\n    \"dimensiones_mm\": [\n        {\n            \"alto_mm\": 10,\n            \"ancho_mm\": 10,\n            \"profundidad_mm\": 10\n        },\n                {\n            \"alto_mm\": 20,\n            \"ancho_mm\": 20,\n            \"profundidad_mm\": 20\n        }\n    ],\n    \"imagenes\": [\n        {\n            \"path\": \"nuevo.jpeg\"\n        },\n                {\n            \"path\": \"nuevo2.jpeg\"\n        }\n    ],\n    \"titulo\": \"NUEVO2\",\n    \"detalle\": null,\n    \"precioLista\": 2500.0,\n    \"descuento\": null,\n    \"disponible\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/articulos/new"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Error por collecion vacia",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"categorias\": [], //ERROR\n    \"colores\": [],//ERROR\n    \"dimensiones_mm\":[],//ERROR\n    \"imagenes\": [],//ERROR\n    \"titulo\": \"NUEVO\",\n    \"detalle\": \"NUEVO\",\n    \"precioLista\": 2500.0,\n    \"descuento\": 2.5,\n    \"disponible\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/articulos/new"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Error por precio/titulo NULL",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"categorias\": [\n        {\n            \"id\": 2,\n            \"nombre\": \"Utiles\"\n        },\n        {\n            \"id\": 4,\n            \"nombre\": \"Decoracion\"\n        }\n    ],\n    \"colores\": [\n        {\n            \"id\": 3,\n            \"nombre\": \"Black\",\n            \"hex_value\": \"000000\"\n        },\n        {\n            \"id\": 6,\n            \"nombre\": \"Gris oscuro\",\n            \"hex_value\": \"696969\"\n        }\n    ],\n    \"dimensiones_mm\": [\n        {\n            \"alto_mm\": 10,\n            \"ancho_mm\": 10,\n            \"profundidad_mm\": 10\n        },\n                {\n            \"alto_mm\": 20,\n            \"ancho_mm\": 20,\n            \"profundidad_mm\": 20\n        }\n    ],\n    \"imagenes\": [\n        {\n            \"path\": \"nuevo.jpeg\"\n        },\n                {\n            \"path\": \"nuevo2.jpeg\"\n        }\n    ],\n    \"titulo\": null,\n    \"detalle\": null,\n    \"precioLista\": null,\n    \"descuento\": null,\n    \"disponible\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/articulos/new"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Eliminar Articulo por ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/articulos/delete/10"
+					},
+					"response": []
+				},
+				{
+					"name": "Articulos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/articulos"
+					},
+					"response": []
+				},
+				{
+					"name": "Detalle Articulo por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/articulos/4"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
