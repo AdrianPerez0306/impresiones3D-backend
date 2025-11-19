@@ -18,7 +18,7 @@ import com.mandarinaSolutions.impresiones3d.repository.RepositoryArticulo;
 import com.mandarinaSolutions.impresiones3d.repository.RepositoryDimension;
 import com.mandarinaSolutions.impresiones3d.repository.RepositoryImagen;
 
-import jakarta.transaction.Transactional;
+
 
 
 @Service
@@ -130,9 +130,9 @@ public class ArticuloService {
 		for(int i = 0; i<articulo.dimensiones_mm.size();i++) {
 			Dimension dimension = articulo.dimensiones_mm.get(i);
 			DimensionDTO dimensionDTO = new DimensionDTO(
-					dimension.alto_mm,
-					dimension.ancho_mm,
-					dimension.profundidad_mm
+					dimension.getAltoMM(),
+					dimension.getAnchoMM(),
+					dimension.getProfundidadMM()
 			);
 			articuloDTO.addDimensionDTO(dimensionDTO);
 		}

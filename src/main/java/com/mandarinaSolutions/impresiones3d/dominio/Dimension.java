@@ -1,8 +1,6 @@
 
 package com.mandarinaSolutions.impresiones3d.dominio;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -11,8 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
 
 
 @Entity
@@ -21,24 +17,48 @@ public class Dimension{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Getter @Setter
-	public Integer id = null;
+	private Integer id = null;
 
 	@Column
-	@Getter @Setter
-	
+	@ManyToOne(fetch = FetchType.LAZY)
 	public Integer articulo_id;
 	
 	@Column
-	@Getter @Setter
-	public Integer alto_mm;
+	private Integer alto_mm;
 	
 	@Column
-	@Getter @Setter
-	public Integer ancho_mm;
+	private Integer ancho_mm;
 	
 	@Column
-	@Getter @Setter
-	public Integer profundidad_mm;
+	private Integer profundidad_mm;
+
+	public Integer getId(){
+		return this.id;
+	}
+
+	public Integer getArticuloID(){
+		return this.articulo_id;
+	}
+
+	public Integer getAltoMM(){
+		return this.alto_mm;
+	}
+	public void setAltoMM(Integer nuevoAltoMM){
+		this.alto_mm = nuevoAltoMM;
+	}
+
+	public Integer getAnchoMM(){
+		return this.alto_mm;
+	}
+	public void setAnchoMM(Integer nuevoAnchoMM){
+		this.ancho_mm = nuevoAnchoMM;
+	}
+
+	public Integer getProfundidadMM(){
+		return this.profundidad_mm;
+	}
+	public void setProfundidadMM(Integer nuevoProfundidaMM){
+		this.profundidad_mm = nuevoProfundidaMM;
+	}
 
 }
