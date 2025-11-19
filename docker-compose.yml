@@ -1,0 +1,70 @@
+
+services:
+  # # 1. Servicio de la API (CulinaryCache)
+  # app:
+  #   container_name: culinarycache-app-server-dev
+  #   # Indica que construya la imagen usando el Dockerfile en este directorio
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile.dev
+
+  #   # Mapea el puerto del contenedor (8080) al puerto de tu máquina (8080)
+  #   ports:
+  #     - "8080:8080"
+  #     - "35729:35729"
+    
+  #   # Variables de entorno para que Spring Boot sepa dónde encontrar PostgreSQL
+  #   environment:
+  #     # CRÍTICO: La URL usa 'db' como hostname, que es el nombre del servicio de la DB
+  #     SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/culinarydb
+  #     SPRING_DATASOURCE_USERNAME: user
+  #     SPRING_DATASOURCE_PASSWORD: password
+  #     SPRING_PROFILES_ACTIVE: develop
+  #     SPRING_DEVTOOLS_LIVERELOAD_ENABLED: "true"
+  #     SPRING_DEVTOOLS_RESTART_ENABLED: "true"
+    
+  #   # Asegura que la DB se levante antes que la aplicación
+  #   depends_on:
+  #     - db
+    
+  #   # Política de reinicio: solo si falla (ideal para desarrollo)
+  #   restart: on-failure
+
+  #   volumes:
+  #     - .:/app          # Monta TODO el proyecto local en /app
+  #     - /app/target   # Excluye la carpeta 'target' del montaje para que Docker la maneje internamente
+
+  #   command: ["mvn", "spring-boot:run"]
+    
+# 2. MySQL Database
+  db:
+    container_name: impresiones3D-app-db-mysql
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: impresiones3D_db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    volumes:
+      - db-data:/var/lib/mysql
+    restart: on-failure
+    ports:
+      - '3306:3306'
+
+  # 3. phpMyAdmin para MySQL
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_mysql
+    restart: always
+    ports:
+      - "5050:80"  # Puedes usar 5050 o cambiar a otro puerto
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+      - db
+
+volumes:
+  db-data:
+    driver: local
