@@ -78,18 +78,19 @@ public class ArticuloService {
 		
 //		Articulo tiene una relacion con la tabla Imagen, de 1 a n respectivamente
 //		Si quiero agregar un articulo y mapearlo a esta tabla, primero debo insertar 
-//		Ya que no puedo mapear hacia algo que NO existe. 
+//		Ya que no puedo mapear hacia algo que NO existe. Y si se agrega la opcion de
+// 		cascade=Persist se pueden insertar nuevas cosas todo el tiempo.
 		
 //		INSERT INTO dimension 
 		for(int i=0; i<articulo.dimensiones_mm.size();i++) {
 			Dimension dimension = articulo.dimensiones_mm.get(i);
-			dimension.articulo_id = 1;
+			dimension.setArticuloID(articulo.getId());;
 			Dimension persistedDimension = repoDimension.save(dimension);
 		}
 //		INSERT INTO imagen 
 		for(int i=0; i<articulo.imagenes.size();i++) {
 			Imagen imagen = articulo.imagenes.get(i);
-			imagen.articulo_id = 1;
+			imagen.setArticuloID(articulo.getId());
 			Imagen persistedImagen = repoImagen.save(imagen);
 		}
 
@@ -137,7 +138,7 @@ public class ArticuloService {
 			articuloDTO.addDimensionDTO(dimensionDTO);
 		}
 		for(int i = 0; i<articulo.imagenes.size();i++) {
-			String imagenPath = articulo.imagenes.get(i).path;
+			String imagenPath = articulo.imagenes.get(i).getPath();
 			articuloDTO.addImagen(articuloDTO.getPath() + imagenPath);
 		}
 	    return articuloDTO;

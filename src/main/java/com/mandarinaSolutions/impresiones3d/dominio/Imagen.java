@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
@@ -15,16 +14,18 @@ public class Imagen{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Integer id = null;
+	private Integer id = null;
 	
 	@Column
-	@ManyToOne
-	public Integer articulo_id;
+	private Integer articulo_id;
 	
 	@Column
-	public String path;
+	private String path;
 
 	public Integer getID(){ return this.id; }
+
+	public Integer getArticuloID(){	return this.articulo_id;	}
+	public void setArticuloID(Integer newArticuloID){	this.articulo_id = newArticuloID;	}
 
 	public String getPath(){ return this.path; }
 	public void setPath(String newPath){ this.path = newPath; }
