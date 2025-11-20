@@ -104,9 +104,9 @@ public class Bootstrap implements CommandLineRunner {
         repositoryDimension.save(dim2);
         
         // Imágenes para este artículo
-        guardarImagen(articuloGuardado.getId(), "/images/llavero/frontal.jpg");
-        guardarImagen(articuloGuardado.getId(), "/images/llavero/lateral.jpg");
-        guardarImagen(articuloGuardado.getId(), "/images/llavero/detalle.jpg");
+        guardarImagen(articuloGuardado.getId(), "https://acdn-us.mitiendanube.com/stores/427/841/products/img_68351-df6fcaf72091c9079b16778653523585-1024-1024.jpeg");
+        guardarImagen(articuloGuardado.getId(), "https://cdn.quicksell.co/-NkYl4A0SPH5NIewgV0v/products/-Nkdy4ZQatYpNDilZpJu.jpg");
+        guardarImagen(articuloGuardado.getId(), "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqZV-11PXoOPPiG62pyDJMHhp8h7day4aK_A&s");
     }
     
     private void crearYGuardarSoporte(Categoria soportes, Categoria herramientas, Color negro, Color blanco) {
@@ -128,8 +128,8 @@ public class Bootstrap implements CommandLineRunner {
         dim.setArticuloID(articuloGuardado.getId());
         repositoryDimension.save(dim);
         
-        guardarImagen(articuloGuardado.getId(), "/images/soporte/completo.jpg");
-        guardarImagen(articuloGuardado.getId(), "/images/soporte/en-uso.jpg");
+        guardarImagen(articuloGuardado.getId(), "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvdy9WY3Js2LrFfQIyDhbFq1kVx-sxTStvTmux2OcYaou6tuVfxibDbUNFCSh2JqJF74&usqp=CAU");
+        guardarImagen(articuloGuardado.getId(), "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP0QdbodaKGUwJgqICDQV97R5VNWgAbmLmLg&s");
     }
     
     private void crearYGuardarFigura(Categoria decoracion, Color rojo, Color verde, Color amarillo) {
@@ -151,10 +151,10 @@ public class Bootstrap implements CommandLineRunner {
         dim.setArticuloID(articuloGuardado.getId());
         repositoryDimension.save(dim);
         
-        guardarImagen(articuloGuardado.getId(), "/images/dragon/frontal.jpg");
-        guardarImagen(articuloGuardado.getId(), "/images/dragon/lateral.jpg");
-        guardarImagen(articuloGuardado.getId(), "/images/dragon/detalle-ala.jpg");
-        guardarImagen(articuloGuardado.getId(), "/images/dragon/detalle-cabeza.jpg");
+        guardarImagen(articuloGuardado.getId(), "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGq5pybfOLhuLR6jrjOoRagq27yPzOttxI2A&s");
+        guardarImagen(articuloGuardado.getId(), "https://i5.walmartimages.com/asr/5021f186-74c2-45d9-806a-e9e7a8a0c23a.96d79ca648cfecdf56bc3b78afbfea12.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF");
+        guardarImagen(articuloGuardado.getId(), "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSELJ6MjIqVs45FdxPXOMX2Bo4_5p-4XG3PBqW2gjkXTDYq0SuNrF-XnN3dWEqto0Et94A&usqp=CAU");
+        guardarImagen(articuloGuardado.getId(), "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVRJ6qmTENu80NM0MbEHlXNIfAYenxfk6nBSdGSmTtBmWGjhgS3Gwdg8cPs2ZTYLjC0UQ&usqp=CAU");
     }
     
     private void crearYGuardarPortalapices(Categoria herramientas, Categoria decoracion, Color blanco, Color negro, Color azul) {
@@ -176,9 +176,9 @@ public class Bootstrap implements CommandLineRunner {
         dim.setArticuloID(articuloGuardado.getId());
         repositoryDimension.save(dim);
         
-        guardarImagen(articuloGuardado.getId(), "/images/portalapices/vista-superior.jpg");
-        guardarImagen(articuloGuardado.getId(), "/images/portalapices/vista-frontal.jpg");
-        guardarImagen(articuloGuardado.getId(), "/images/portalapices/en-uso.jpg");
+        guardarImagen(articuloGuardado.getId(), "https://i5.walmartimages.com/asr/b81c1a50-347a-4daa-907f-07662ff1542f.867c2cad4e1ae88e337a073ff9046519.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF");
+        guardarImagen(articuloGuardado.getId(), "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT59nitS32GrU2EGYKAitDDuXDRH0ZMyGZZpg&s");
+        guardarImagen(articuloGuardado.getId(), "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR24s4Spa075su64hKTP_ZUM57waYOtVi-RjQ&s");
     }
     
     private void guardarImagen(Integer articuloId, String path) {
