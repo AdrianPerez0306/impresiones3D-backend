@@ -19,7 +19,7 @@ public class Color {
 	public String nombre;
 	
 	@Column(length=6)
-	public String hex_value;
+	public String hexValue;
 	
 
 	public String getNombre() {
@@ -30,10 +30,10 @@ public class Color {
 	}
 
 	public String getHexValue() {
-		return hex_value;
+		return hexValue;
 	}
 	public void setHexValue(String nuevoHexValue) {
-		this.nombre = nuevoHexValue;
+		this.hexValue = nuevoHexValue;
 	}
 
 	
@@ -42,7 +42,7 @@ public class Color {
 		return "Color "+
 				"[id=" + id +
 				", detalle=" + nombre +
-				", hex_value=" + hex_value +
+				", hex_value=" + hexValue +
 				"]";
 	}	
 
