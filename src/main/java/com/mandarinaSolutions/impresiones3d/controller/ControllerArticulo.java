@@ -77,7 +77,7 @@ public class ControllerArticulo {
 	
 	@GetMapping(basePath + "/categoria")
 	public List<ArticuloBasicoDTO> getArticulosByCategoria(@RequestParam String categoria) {;
-		return service.getByCategoria(categoria).stream().map(articulo -> 
+		return service.getByCategoria(categoria.toLowerCase()).stream().map(articulo -> 
 			new ArticuloBasicoDTO(
 				articulo.getId(),
 				articulo.getTitulo(),

@@ -65,13 +65,13 @@ public class Bootstrap implements CommandLineRunner {
     
     private Categoria guardarCategoria(String nombre) {
         Categoria categoria = new Categoria();
-        categoria.setNombre(nombre);
+        categoria.setNombre(nombre.toLowerCase());
         return repositoryCategoria.save(categoria);
     }
     
     private Color guardarColor(String nombre, String hexValue) {
         Color color = new Color();
-        color.setNombre(nombre);
+        color.setNombre(nombre.toLowerCase());
         color.setHexValue(hexValue);
         return repositoryColor.save(color);
     }
