@@ -32,8 +32,16 @@ public class ControllerArticulo {
 	//GET`s	
 	// //////////////////////////////////////////////
 	@GetMapping(basePath)
-	public Set<ArticuloBasicoDTO> getArticulos() {
-		return service.getAll();
+	public List<ArticuloBasicoDTO> getArticulos() {
+		return service.getAll().stream().map(articulo -> 
+			new ArticuloBasicoDTO(
+				articulo.getId(),
+				articulo.getTitulo(),
+				articulo.getPrecioLista(),
+				articulo.getDescuento(),
+				articulo.getImagenes().get(0).getPath()
+			)
+		).toList();
 	};
 	
 	@GetMapping(basePath + "/{id}")
@@ -43,17 +51,41 @@ public class ControllerArticulo {
 	
 	@GetMapping(basePath + "/carrito")
 	public List<ArticuloBasicoDTO> getCarrito(@RequestBody List<Integer> ids) {
-		return service.getCarrito(ids);
+		return service.getCarrito(ids).stream().map(articulo -> 
+			new ArticuloBasicoDTO(
+				articulo.getId(),
+				articulo.getTitulo(),
+				articulo.getPrecioLista(),
+				articulo.getDescuento(),
+				articulo.getImagenes().get(0).getPath()
+			)
+		).toList();
 	};
 	
 	@GetMapping(basePath + "/filter")
 	public List<ArticuloBasicoDTO> getArticulosByFilter(@RequestParam String filter) {
-		return service.getByFilter(filter);
+		return service.getByFilter(filter).stream().map(articulo -> 
+			new ArticuloBasicoDTO(
+				articulo.getId(),
+				articulo.getTitulo(),
+				articulo.getPrecioLista(),
+				articulo.getDescuento(),
+				articulo.getImagenes().get(0).getPath()
+			)
+		).toList();
 	};
 	
 	@GetMapping(basePath + "/categoria")
-	public List<ArticuloBasicoDTO> getArticulosByCategoria(@RequestParam String categoria) {
-		return service.getByCategoria(categoria);
+	public List<ArticuloBasicoDTO> getArticulosByCategoria(@RequestParam String categoria) {;
+		return service.getByCategoria(categoria).stream().map(articulo -> 
+			new ArticuloBasicoDTO(
+				articulo.getId(),
+				articulo.getTitulo(),
+				articulo.getPrecioLista(),
+				articulo.getDescuento(),
+				articulo.getImagenes().get(0).getPath()
+			)
+		).toList();
 	};
 	// //////////////////////////////////////////////
 	// POST`s	

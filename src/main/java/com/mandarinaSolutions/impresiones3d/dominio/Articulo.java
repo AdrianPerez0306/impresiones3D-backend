@@ -26,7 +26,7 @@ public class Articulo{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Integer id = null;
+	private Integer id = null;
 
 	@ManyToMany(
 			fetch = FetchType.LAZY,

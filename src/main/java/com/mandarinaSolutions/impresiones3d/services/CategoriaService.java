@@ -19,6 +19,6 @@ public class CategoriaService {
 	}
 	
 	public List<Categoria> getCategoriasNav() {
-		return repo.getCategoriasNav();
+		return repo.findAll();
 	}
 }

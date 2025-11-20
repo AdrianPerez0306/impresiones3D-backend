@@ -15,6 +15,7 @@ import com.mandarinaSolutions.impresiones3d.dominio.Dimension;
 import com.mandarinaSolutions.impresiones3d.dominio.Imagen;
 import com.mandarinaSolutions.impresiones3d.exceptions.ArticuloNotFoundException;
 import com.mandarinaSolutions.impresiones3d.repository.RepositoryArticulo;
+import com.mandarinaSolutions.impresiones3d.repository.RepositoryCategoria;
 import com.mandarinaSolutions.impresiones3d.repository.RepositoryDimension;
 import com.mandarinaSolutions.impresiones3d.repository.RepositoryImagen;
 
@@ -30,18 +31,20 @@ public class ArticuloService {
 	private RepositoryArticulo repo;
 	
 	@Autowired
-	private RepositoryDimension repoDimension;
+	private RepositoryCategoria repositoryCategoria;
+
+	@Autowired
+	private RepositoryDimension repositoryDimension;
 	
 	@Autowired
-	private RepositoryImagen repoImagen;
+	private RepositoryImagen repositoryImagen;
 	
-	public Set<ArticuloBasicoDTO> getAll() {
-		Set<ArticuloBasicoDTO> resultadoToSet = new HashSet<>(repo.getAll());
-		return resultadoToSet;
+	public List<Articulo> getAll() {
+		return repo.findAll();
 	}
 	
-	public List<ArticuloBasicoDTO> getCarrito(List<Integer> ids) {
-		List<ArticuloBasicoDTO> carrito = repo.getCarrito(ids);
+	public List<Articulo> getCarrito(List<Integer> ids) {
+		List<Articulo> carrito = repo.findByIdIn(ids);
 		return carrito;
 	}
 	
@@ -54,14 +57,17 @@ public class ArticuloService {
 		return this.mapToArticuloDetalleDTO(articulo);
 	}
 	
-	public List<ArticuloBasicoDTO> getByFilter(String filter) throws ArticuloNotFoundException {
-		List<ArticuloBasicoDTO> articulosPorFiltro = repo.getByFilter(filter);
+	public List<Articulo> getByFilter(String filter) throws ArticuloNotFoundException {
+		//TODO ACOMODAR LA QUERY
+		List<Articulo> articulosPorFiltro = repo.findByTituloContaining(filter);
 		return articulosPorFiltro;
 	}
 	
-	public List<ArticuloBasicoDTO> getByCategoria(String categoria) throws ArticuloNotFoundException {
-		List<ArticuloBasicoDTO> articulosPorCategoria = repo.getByCategoria(categoria);
-		return articulosPorCategoria;
+	public List<Articulo> getByCategoria(String categoria) throws ArticuloNotFoundException {
+		if(!repositoryCategoria.existsByNombre(categoria)){
+			throw new ArticuloNotFoundException();
+		};
+		return repo.findByCategorias_Nombre(categoria);
 	}
 	
 	public void newArticulo(Articulo articulo) throws Exception{
@@ -85,13 +91,13 @@ public class ArticuloService {
 		for(int i=0; i<articulo.dimensiones_mm.size();i++) {
 			Dimension dimension = articulo.dimensiones_mm.get(i);
 			dimension.setArticuloID(articulo.getId());;
-			Dimension persistedDimension = repoDimension.save(dimension);
+			Dimension persistedDimension = repositoryDimension.save(dimension);
 		}
 //		INSERT INTO imagen 
 		for(int i=0; i<articulo.imagenes.size();i++) {
 			Imagen imagen = articulo.imagenes.get(i);
 			imagen.setArticuloID(articulo.getId());
-			Imagen persistedImagen = repoImagen.save(imagen);
+			Imagen persistedImagen = repositoryImagen.save(imagen);
 		}
 
 		repo.save(articulo);
