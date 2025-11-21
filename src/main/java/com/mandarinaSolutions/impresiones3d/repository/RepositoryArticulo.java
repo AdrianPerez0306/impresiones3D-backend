@@ -24,9 +24,10 @@ public interface RepositoryArticulo extends JpaRepository<Articulo, Integer> {
 	@EntityGraph(attributePaths={"imagenes"})
 	List<Articulo> findByIdIn(List<Integer> ids);
 	
+	@EntityGraph(attributePaths={"imagenes"})
 	List<Articulo> findByTituloContaining(String titulo);
 	
-
+	@EntityGraph(attributePaths={"imagenes"})
 	List<Articulo> findByCategorias_Nombre(String nombre);
 
 }

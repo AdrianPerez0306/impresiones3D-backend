@@ -10,8 +10,11 @@ public class ArticuloBasicoDTO {
     public Double descuento;
     public String imagen;
     
+    // @JsonIgnore
+    // public String path = "../src/assets/";
+    
     @JsonIgnore
-    public String path = "../src/assets/";
+    public String path = "";
     
     public ArticuloBasicoDTO(
     		Integer id,
