@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,13 +52,12 @@ public class ArticuloService {
 		return carrito;
 	}
 	
-	public ArticuloDetalleDTO getByID(Integer id) throws ArticuloNotFoundException {
+	public Articulo getByID(Integer id) throws ArticuloNotFoundException {
 		if(!repo.existsById(id)) {
 			throw new ArticuloNotFoundException();
 		};
-		Articulo articulo = repo.findById(id).get();
 
-		return this.mapToArticuloDetalleDTO(articulo);
+		return repo.findById(id).get();
 	}
 	
 	public List<Articulo> getByFilter(String filter) throws ArticuloNotFoundException {
@@ -92,13 +92,13 @@ public class ArticuloService {
 		
 //		INSERT INTO dimension 
 		for(int i=0; i<articulo.dimensiones_mm.size();i++) {
-			Dimension dimension = articulo.dimensiones_mm.get(i);
+			Dimension dimension = articulo.dimensiones_mm.stream().sorted().collect(Collectors.toList()).get(i);
 			dimension.setArticuloID(articulo.getId());;
 			Dimension persistedDimension = repositoryDimension.save(dimension);
 		}
 //		INSERT INTO imagen 
 		for(int i=0; i<articulo.imagenes.size();i++) {
-			Imagen imagen = articulo.imagenes.get(i);
+			Imagen imagen = articulo.imagenes.stream().sorted().collect(Collectors.toList()).get(i);
 			imagen.setArticuloID(articulo.getId());
 			Imagen persistedImagen = repositoryImagen.save(imagen);
 		}
@@ -111,7 +111,8 @@ public class ArticuloService {
 		Optional<Articulo> opt = repo.findById(id);
 		Articulo articulo = opt.get();
 		for(int i=0; i<articulo.dimensiones_mm.size();i++) {
-			System.out.println(articulo.dimensiones_mm.get(i));
+
+			System.out.println(articulo.dimensiones_mm.stream().sorted().collect(Collectors.toList()).get(i));
 		}
 		repo.deleteById(id);
 	}
@@ -126,31 +127,33 @@ public class ArticuloService {
 		repo.save(articulo);
 	}
 	
-	private ArticuloDetalleDTO mapToArticuloDetalleDTO(Articulo articulo) {
-		ArticuloDetalleDTO articuloDTO = new ArticuloDetalleDTO(
-				articulo.getId(),
-				articulo.getTitulo(),
-				articulo.getDetalle(),
-				articulo.getPrecioLista(),
-				articulo.getDescuento(),
-				articulo.getCategorias(),
-				articulo.getColores()
-		);
+	// private ArticuloDetalleDTO mapToArticuloDetalleDTO(Articulo articulo) {
+	// 	ArticuloDetalleDTO articuloDTO = new ArticuloDetalleDTO(
+	// 			articulo.getId(),
+	// 			articulo.getTitulo(),
+	// 			articulo.getDetalle(),
+	// 			articulo.getPrecioLista(),
+	// 			articulo.getDescuento(),
+	// 			articulo.getCategorias().stream().collect(Collectors.toList()),
+	// 			articulo.getColores().stream().collect(Collectors.toList()),
+	// 			articulo.getDimensiones_mm().stream().collect(Collectors.toList()),
+	// 			articulo.getImagenes().stream().collect(Collectors.toList())
+	// 	);
 		
-		for(int i = 0; i<articulo.dimensiones_mm.size();i++) {
-			Dimension dimension = articulo.dimensiones_mm.get(i);
-			DimensionDTO dimensionDTO = new DimensionDTO(
-					dimension.getAltoMM(),
-					dimension.getAnchoMM(),
-					dimension.getProfundidadMM()
-			);
-			articuloDTO.addDimensionDTO(dimensionDTO);
-		}
-		for(int i = 0; i<articulo.imagenes.size();i++) {
-			String imagenPath = articulo.imagenes.get(i).getPath();
-			articuloDTO.addImagen(articuloDTO.getPath() + imagenPath);
-		}
-	    return articuloDTO;
-	}
+	// 	for(int i = 0; i<articulo.dimensiones_mm.size();i++) {
+	// 		Dimension dimension = articulo.dimensiones_mm.get(i);
+	// 		DimensionDTO dimensionDTO = new DimensionDTO(
+	// 				dimension.getAltoMM(),
+	// 				dimension.getAnchoMM(),
+	// 				dimension.getProfundidadMM()
+	// 		);
+	// 		articuloDTO.addDimensionDTO(dimensionDTO);
+	// 	}
+	// 	for(int i = 0; i<articulo.imagenes.size();i++) {
+	// 		String imagenPath = articulo.imagenes.get(i).getPath();
+	// 		articuloDTO.addImagen(articuloDTO.getPath() + imagenPath);
+	// 	}
+	//     return articuloDTO;
+	// }
 	
 }

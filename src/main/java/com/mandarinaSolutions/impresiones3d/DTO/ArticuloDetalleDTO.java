@@ -6,6 +6,8 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mandarinaSolutions.impresiones3d.dominio.Categoria;
 import com.mandarinaSolutions.impresiones3d.dominio.Color;
+import com.mandarinaSolutions.impresiones3d.dominio.Dimension;
+import com.mandarinaSolutions.impresiones3d.dominio.Imagen;
 
 public class ArticuloDetalleDTO {
 
@@ -16,8 +18,8 @@ public class ArticuloDetalleDTO {
     public Double descuento;
     public List<Categoria> categorias;
     public List<Color> colores;
-    public ArrayList<DimensionDTO> dimensiones_mm = new ArrayList<DimensionDTO>();
-    public ArrayList<String> imagenes = new ArrayList<String>();
+    public List<DimensionDTO> dimensiones_mm;
+    public List<String> imagenes;
     
     // @JsonIgnore
     // private String path = "../src/assets/";
@@ -31,7 +33,9 @@ public class ArticuloDetalleDTO {
     		Double precio_lista,
     		Double descuento,
     	    List<Categoria> categorias,
-    	    List<Color> colores
+    	    List<Color> colores,
+            List<DimensionDTO> dimensiones_mm,
+            List<String> imagenes
     ){
         this.id = id;
         this.titulo = titulo;
@@ -40,6 +44,8 @@ public class ArticuloDetalleDTO {
         this.descuento = descuento;
         this.categorias = categorias;
         this.colores = colores;
+        this.dimensiones_mm = dimensiones_mm;
+        this.imagenes = imagenes;
     }
 
     public void addDimensionDTO(DimensionDTO dimensionDTO) {

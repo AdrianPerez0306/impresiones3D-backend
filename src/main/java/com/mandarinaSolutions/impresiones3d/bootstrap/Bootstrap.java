@@ -13,6 +13,7 @@ import com.mandarinaSolutions.impresiones3d.repository.RepositoryColor;
 import com.mandarinaSolutions.impresiones3d.repository.RepositoryDimension;
 import com.mandarinaSolutions.impresiones3d.repository.RepositoryImagen;
 import java.util.Arrays;
+import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -83,8 +84,8 @@ public class Bootstrap implements CommandLineRunner {
         articulo.setPrecioLista(1200.0);
         articulo.setDescuento(10.0);
         articulo.setDisponible(true);
-        articulo.setCategorias(Arrays.asList(llaveros, herramientas));
-        articulo.setColores(Arrays.asList(rojo, azul, negro));
+        articulo.setCategorias(new HashSet<Categoria>(Arrays.asList(llaveros, herramientas)));
+        articulo.setColores(new HashSet<Color>(Arrays.asList(rojo, azul, negro)));
         
         Articulo articuloGuardado = repositoryArticulo.save(articulo);
         
@@ -116,8 +117,9 @@ public class Bootstrap implements CommandLineRunner {
         articulo.setPrecioLista(2500.0);
         articulo.setDescuento(15.0);
         articulo.setDisponible(true);
-        articulo.setCategorias(Arrays.asList(soportes, herramientas));
-        articulo.setColores(Arrays.asList(negro, blanco));
+        articulo.setCategorias(new HashSet<Categoria>(Arrays.asList(soportes, herramientas)));
+        articulo.setColores(new HashSet<Color>(Arrays.asList(negro, blanco)));
+
         
         Articulo articuloGuardado = repositoryArticulo.save(articulo);
         
@@ -139,8 +141,8 @@ public class Bootstrap implements CommandLineRunner {
         articulo.setPrecioLista(3500.0);
         articulo.setDescuento(5.0);
         articulo.setDisponible(true);
-        articulo.setCategorias(Arrays.asList(decoracion));
-        articulo.setColores(Arrays.asList(rojo, verde, amarillo));
+        articulo.setCategorias(new HashSet<Categoria>(Arrays.asList(decoracion)));
+        articulo.setColores(new HashSet<Color>(Arrays.asList(rojo, verde, amarillo)));
         
         Articulo articuloGuardado = repositoryArticulo.save(articulo);
         
@@ -164,8 +166,8 @@ public class Bootstrap implements CommandLineRunner {
         articulo.setPrecioLista(1800.0);
         articulo.setDescuento(0.0);
         articulo.setDisponible(true);
-        articulo.setCategorias(Arrays.asList(herramientas, decoracion));
-        articulo.setColores(Arrays.asList(blanco, negro, azul));
+                articulo.setCategorias(new HashSet<Categoria>(Arrays.asList(herramientas, decoracion)));
+        articulo.setColores(new HashSet<Color>(Arrays.asList(blanco, negro, azul)));
         
         Articulo articuloGuardado = repositoryArticulo.save(articulo);
         

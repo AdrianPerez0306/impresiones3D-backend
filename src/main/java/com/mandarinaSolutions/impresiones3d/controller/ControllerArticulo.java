@@ -2,6 +2,7 @@ package com.mandarinaSolutions.impresiones3d.controller;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mandarinaSolutions.impresiones3d.DTO.ArticuloBasicoDTO;
 import com.mandarinaSolutions.impresiones3d.DTO.ArticuloDetalleDTO;
 import com.mandarinaSolutions.impresiones3d.DTO.ColorDTO;
+import com.mandarinaSolutions.impresiones3d.DTO.DimensionDTO;
 import com.mandarinaSolutions.impresiones3d.dominio.Articulo;
 import com.mandarinaSolutions.impresiones3d.exceptions.ArticuloNotFoundException;
 import com.mandarinaSolutions.impresiones3d.services.ArticuloService;
@@ -40,7 +42,7 @@ public class ControllerArticulo {
 				articulo.getTitulo(),
 				articulo.getPrecioLista(),
 				articulo.getDescuento(),
-				articulo.getImagenes().get(0).getPath(),
+				articulo.getImagenes().stream().collect(Collectors.toList()).get(0).getPath(),
 				articulo.getColores().stream().map(color -> 
 					new ColorDTO(
 						color.getNombre(),
@@ -53,7 +55,21 @@ public class ControllerArticulo {
 	
 	@GetMapping(basePath + "/{id}")
 	public ArticuloDetalleDTO getArticuloByID(@PathVariable Integer id) throws ArticuloNotFoundException {
-		return service.getByID(id);
+		Articulo articulo = service.getByID(id);
+		ArticuloDetalleDTO articuloDTO = new ArticuloDetalleDTO(
+				articulo.getId(),
+				articulo.getTitulo(),
+				articulo.getDetalle(),
+				articulo.getPrecioLista(),
+				articulo.getDescuento(),
+				articulo.getCategorias().stream().collect(Collectors.toList()),
+				articulo.getColores().stream().collect(Collectors.toList()),
+				articulo.getDimensiones_mm().stream().map(dimension -> new DimensionDTO(dimension.getAltoMM(), dimension.getAnchoMM(), dimension.getProfundidadMM())).collect(Collectors.toList()),
+				articulo.getImagenes().stream().map(imagen -> imagen.getPath()).collect(Collectors.toList())
+		);
+
+		return articuloDTO;
+
 	};
 	
 	@GetMapping(basePath + "/carrito")
@@ -64,7 +80,7 @@ public class ControllerArticulo {
 				articulo.getTitulo(),
 				articulo.getPrecioLista(),
 				articulo.getDescuento(),
-				articulo.getImagenes().get(0).getPath(),
+				articulo.getImagenes().stream().collect(Collectors.toList()).get(0).getPath(),
 				articulo.getColores().stream().map(color -> 
 					new ColorDTO(
 						color.getNombre(),
@@ -83,7 +99,7 @@ public class ControllerArticulo {
 				articulo.getTitulo(),
 				articulo.getPrecioLista(),
 				articulo.getDescuento(),
-				articulo.getImagenes().get(0).getPath(),
+				articulo.getImagenes().stream().collect(Collectors.toList()).get(0).getPath(),
 				articulo.getColores().stream().map(color -> 
 					new ColorDTO(
 						color.getNombre(),
@@ -102,7 +118,7 @@ public class ControllerArticulo {
 				articulo.getTitulo(),
 				articulo.getPrecioLista(),
 				articulo.getDescuento(),
-				articulo.getImagenes().get(0).getPath(),
+				articulo.getImagenes().stream().collect(Collectors.toList()).get(0).getPath(),
 				articulo.getColores().stream().map(color -> 
 					new ColorDTO(
 						color.getNombre(),
