@@ -18,16 +18,16 @@ public interface RepositoryArticulo extends JpaRepository<Articulo, Integer> {
 	
 
 	@Override
-	@EntityGraph(attributePaths={"imagenes"})
+	@EntityGraph(attributePaths={"imagenes", "colores"})
 	List<Articulo> findAll();
 
-	@EntityGraph(attributePaths={"imagenes"})
+	@EntityGraph(attributePaths={"imagenes", "colores"})
 	List<Articulo> findByIdIn(List<Integer> ids);
 	
-	@EntityGraph(attributePaths={"imagenes"})
+	@EntityGraph(attributePaths={"imagenes", "colores"})
 	List<Articulo> findByTituloContaining(String titulo);
 	
-	@EntityGraph(attributePaths={"imagenes"})
+	@EntityGraph(attributePaths={"imagenes", "colores"})
 	List<Articulo> findByCategorias_Nombre(String nombre);
 
 }

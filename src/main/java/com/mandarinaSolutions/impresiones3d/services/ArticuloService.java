@@ -19,6 +19,8 @@ import com.mandarinaSolutions.impresiones3d.repository.RepositoryCategoria;
 import com.mandarinaSolutions.impresiones3d.repository.RepositoryDimension;
 import com.mandarinaSolutions.impresiones3d.repository.RepositoryImagen;
 
+import jakarta.transaction.Transactional;
+
 
 
 
@@ -39,6 +41,7 @@ public class ArticuloService {
 	@Autowired
 	private RepositoryImagen repositoryImagen;
 	
+	@Transactional
 	public List<Articulo> getAll() {
 		return repo.findAll();
 	}

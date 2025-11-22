@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mandarinaSolutions.impresiones3d.DTO.ArticuloBasicoDTO;
 import com.mandarinaSolutions.impresiones3d.DTO.ArticuloDetalleDTO;
+import com.mandarinaSolutions.impresiones3d.DTO.ColorDTO;
 import com.mandarinaSolutions.impresiones3d.dominio.Articulo;
 import com.mandarinaSolutions.impresiones3d.exceptions.ArticuloNotFoundException;
 import com.mandarinaSolutions.impresiones3d.services.ArticuloService;
@@ -39,7 +40,13 @@ public class ControllerArticulo {
 				articulo.getTitulo(),
 				articulo.getPrecioLista(),
 				articulo.getDescuento(),
-				articulo.getImagenes().get(0).getPath()
+				articulo.getImagenes().get(0).getPath(),
+				articulo.getColores().stream().map(color -> 
+					new ColorDTO(
+						color.getNombre(),
+						color.getHexValue()
+					)
+				).toList()
 			)
 		).toList();
 	};
@@ -57,7 +64,13 @@ public class ControllerArticulo {
 				articulo.getTitulo(),
 				articulo.getPrecioLista(),
 				articulo.getDescuento(),
-				articulo.getImagenes().get(0).getPath()
+				articulo.getImagenes().get(0).getPath(),
+				articulo.getColores().stream().map(color -> 
+					new ColorDTO(
+						color.getNombre(),
+						color.getHexValue()
+					)
+				).toList()
 			)
 		).toList();
 	};
@@ -70,7 +83,13 @@ public class ControllerArticulo {
 				articulo.getTitulo(),
 				articulo.getPrecioLista(),
 				articulo.getDescuento(),
-				articulo.getImagenes().get(0).getPath()
+				articulo.getImagenes().get(0).getPath(),
+				articulo.getColores().stream().map(color -> 
+					new ColorDTO(
+						color.getNombre(),
+						color.getHexValue()
+					)
+				).toList()
 			)
 		).toList();
 	};
@@ -83,7 +102,13 @@ public class ControllerArticulo {
 				articulo.getTitulo(),
 				articulo.getPrecioLista(),
 				articulo.getDescuento(),
-				articulo.getImagenes().get(0).getPath()
+				articulo.getImagenes().get(0).getPath(),
+				articulo.getColores().stream().map(color -> 
+					new ColorDTO(
+						color.getNombre(),
+						color.getHexValue()
+					)
+				).toList()
 			)
 		).toList();
 	};

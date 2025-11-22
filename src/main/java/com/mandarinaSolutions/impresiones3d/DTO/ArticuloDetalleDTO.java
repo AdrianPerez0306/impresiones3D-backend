@@ -19,8 +19,10 @@ public class ArticuloDetalleDTO {
     public ArrayList<DimensionDTO> dimensiones_mm = new ArrayList<DimensionDTO>();
     public ArrayList<String> imagenes = new ArrayList<String>();
     
+    // @JsonIgnore
+    // private String path = "../src/assets/";
     @JsonIgnore
-    private String path = "../src/assets/";
+    private String path = "";
     
     public ArticuloDetalleDTO(
     		Integer id,
