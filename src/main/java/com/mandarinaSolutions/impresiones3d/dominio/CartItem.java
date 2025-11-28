@@ -1,21 +1,23 @@
 package com.mandarinaSolutions.impresiones3d.dominio;
 
+import java.util.List;
+
 public class CartItem {
 	private String titulo;
 	private String imagen;
 	private int precio_lista;
-	private String color;
-	private String dimension_mm;
-	private int cantidad;
+	private List<String> colores;
+	private List<String> dimensiones_mm;
+	private List<String> cantidades;
 	
 //	constructor
-	public CartItem(String titulo, String imagen, int precio_lista, String color, String dimension_mm, int cantidad) {
+	public CartItem(String titulo, String imagen, int precio_lista, List<String> color, List<String> dimension_mm, List<String> cantidad) {
 		this.titulo = titulo;
 		this.imagen = imagen;
 		this.precio_lista = precio_lista;
-		this.color = color;
-		this.dimension_mm = dimension_mm;
-		this.cantidad = cantidad;
+		this.colores = color;
+		this.dimensiones_mm = dimension_mm;
+		this.cantidades = cantidad;
 	}
 
 	public String getTitulo() {
@@ -30,21 +32,21 @@ public class CartItem {
 		return precio_lista;
 	}
 
-	public String getColor() {
-		return color;
+	public List<String> getColores() {
+		return colores;
 	}
 
-	public String getDimension_mm() {
-		return dimension_mm;
+	public List<String> getDimensiones_mm() {
+		return dimensiones_mm;
 	}
 
-	public int getCantidad() {
-		return cantidad;
+	public List<String> getCantidades() {
+		return cantidades;
 	}
 
 	@Override
 	public String toString() {
 		return "CartItem [titulo=" + titulo + ", imagen=" + imagen + ", precio_lista=" + precio_lista + ", color="
-				+ color + ", dimension_mm=" + dimension_mm + ", cantidad=" + cantidad + "]";
+				+ colores + ", dimension_mm=" + dimensiones_mm + ", cantidad=" + cantidades + "]";
 	}
 }

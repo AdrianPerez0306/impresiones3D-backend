@@ -1,16 +1,11 @@
 package com.mandarinaSolutions.impresiones3d.services;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.mandarinaSolutions.impresiones3d.DTO.ArticuloBasicoDTO;
-import com.mandarinaSolutions.impresiones3d.DTO.ArticuloDetalleDTO;
-import com.mandarinaSolutions.impresiones3d.DTO.DimensionDTO;
 import com.mandarinaSolutions.impresiones3d.dominio.Articulo;
 import com.mandarinaSolutions.impresiones3d.dominio.Dimension;
 import com.mandarinaSolutions.impresiones3d.dominio.Imagen;
@@ -94,13 +89,13 @@ public class ArticuloService {
 		for(int i=0; i<articulo.dimensiones_mm.size();i++) {
 			Dimension dimension = articulo.dimensiones_mm.stream().sorted().collect(Collectors.toList()).get(i);
 			dimension.setArticuloID(articulo.getId());;
-			Dimension persistedDimension = repositoryDimension.save(dimension);
+			repositoryDimension.save(dimension);
 		}
 //		INSERT INTO imagen 
 		for(int i=0; i<articulo.imagenes.size();i++) {
 			Imagen imagen = articulo.imagenes.stream().sorted().collect(Collectors.toList()).get(i);
 			imagen.setArticuloID(articulo.getId());
-			Imagen persistedImagen = repositoryImagen.save(imagen);
+			repositoryImagen.save(imagen);
 		}
 
 		repo.save(articulo);

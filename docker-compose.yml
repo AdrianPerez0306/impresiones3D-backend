@@ -38,33 +38,32 @@ services:
     
 # 2. MySQL Database
   db:
-    container_name: impresiones3D-app-db-mysql
-    image: mysql:8.4
+    container_name: v_laboratory_automotive_design_db
+    image: postgres:17-alpine
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: impresiones3D_db
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=v_laboratory_automotive_design_db
     volumes:
-      - db-data:/var/lib/mysql
+      - postgres-data:/var/lib/postgresql/data
     restart: on-failure
     ports:
-      - '3306:3306'
+      - '5432:5432'
 
-  # 3. phpMyAdmin para MySQL
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin_mysql
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container_event_nexus
     restart: always
     ports:
-      - "5050:80"  # Puedes usar 5050 o cambiar a otro puerto
+      - "5050:80"
     environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: root
-    depends_on:
-      - db
+      PGADMIN_DEFAULT_EMAIL: admin@phm.edu.ar
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
 
 volumes:
-  db-data:
+  postgres-data:
+    driver: local
+  pgadmin-data:
     driver: local

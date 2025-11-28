@@ -9,7 +9,7 @@ import com.mandarinaSolutions.impresiones3d.dominio.Categoria;
 import com.mandarinaSolutions.impresiones3d.services.CategoriaService;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:5173", "http://localhost:5174"})
+
 public class ControllerCategoria {
 	
 	@Autowired

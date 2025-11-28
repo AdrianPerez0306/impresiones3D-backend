@@ -1,6 +1,5 @@
 package com.mandarinaSolutions.impresiones3d.DTO;
 
-import com.mandarinaSolutions.impresiones3d.dominio.Usuario;
 
 public class UserDTO {
 
