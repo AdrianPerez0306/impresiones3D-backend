@@ -2,10 +2,8 @@ package com.mandarinaSolutions.impresiones3d.dominio;
 
 import com.mandarinaSolutions.impresiones3d.DTO.UserDTO;
 import jakarta.persistence.*;
-import lombok.Data;
 
 @Entity
-@Data
 @Table(name = "usuario")
 public class Usuario {
     @Id

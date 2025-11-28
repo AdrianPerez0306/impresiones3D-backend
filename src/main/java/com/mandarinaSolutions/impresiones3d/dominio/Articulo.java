@@ -1,8 +1,8 @@
 
 package com.mandarinaSolutions.impresiones3d.dominio;
 
+import java.util.Set;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -26,7 +26,7 @@ public class Articulo{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Integer id = null;
+	private Integer id = null;
 
 	@ManyToMany(
 			fetch = FetchType.LAZY,
@@ -37,7 +37,7 @@ public class Articulo{
 		joinColumns = @JoinColumn(name = "id_articulo"),
 		inverseJoinColumns = @JoinColumn(name = "id_categoria")
 	)
-	public List<Categoria> categorias;
+	public Set<Categoria> categorias;
 	
 
 	@ManyToMany(
@@ -48,7 +48,7 @@ public class Articulo{
 		joinColumns = @JoinColumn(name = "id_articulo"),
 		inverseJoinColumns = @JoinColumn(name = "id_color")
 	)
-	public List<Color> colores;
+	public Set<Color> colores;
 	
 	@OneToMany(
 			cascade={
@@ -61,7 +61,7 @@ public class Articulo{
 	@JoinColumn(
 			name="articulo_id"
 	)
-	public List<Dimension> dimensiones_mm;
+	public Set<Dimension> dimensiones_mm;
 	
 	@OneToMany(
 			cascade= {
@@ -73,7 +73,7 @@ public class Articulo{
 	@JoinColumn(
 		name="articulo_id"
 	)
-	public List<Imagen> imagenes;
+	public Set<Imagen> imagenes;
 	
 	@Column(length=50)
 	private String titulo;
@@ -118,8 +118,8 @@ public class Articulo{
 //	GETTERS AND SETTERS COLLECTIONS
 //	////////////////////////////////////
 	
-	public List<Categoria> getCategorias(){	return this.categorias;	} 
-	public void setCategorias(List<Categoria> newCategorias){
+	public Set<Categoria> getCategorias(){	return this.categorias;	} 
+	public void setCategorias(Set<Categoria> newCategorias){
 		this.categorias = newCategorias;
 	} 
 	public void addCategoria(Categoria categoria){
@@ -129,8 +129,8 @@ public class Articulo{
 		this.categorias.remove(categoria);
 	} 
 	
-	public List<Imagen> getImagenes(){	return this.imagenes;	} 
-	public void setImagenes(List<Imagen> newImagenes){
+	public Set<Imagen> getImagenes(){	return this.imagenes;	} 
+	public void setImagenes(Set<Imagen> newImagenes){
 		this.imagenes = newImagenes;
 	} 
 	public void addImagen(Imagen imagen){
@@ -140,8 +140,8 @@ public class Articulo{
 		this.imagenes.remove(imagen);
 	} 
 	
-	public List<Dimension> getDimensiones_mm(){	return this.dimensiones_mm;	} 
-	public void setDimensiones_mm(List<Dimension> newDimensiones){
+	public Set<Dimension> getDimensiones_mm(){	return this.dimensiones_mm;	} 
+	public void setDimensiones_mm(Set<Dimension> newDimensiones){
 		this.dimensiones_mm = newDimensiones;
 	} 
 	public void addDimension(Dimension dimension){
@@ -151,8 +151,8 @@ public class Articulo{
 		this.dimensiones_mm.remove(dimension);
 	} 
 	
-	public List<Color> getColores(){	return this.colores;	} 
-	public void setColores(List<Color> newColores){
+	public Set<Color> getColores(){	return this.colores;	} 
+	public void setColores(Set<Color> newColores){
 		this.colores = newColores;
 	} 
 	public void addColor(Color color){

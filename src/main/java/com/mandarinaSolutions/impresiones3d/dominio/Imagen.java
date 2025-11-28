@@ -1,17 +1,11 @@
 package com.mandarinaSolutions.impresiones3d.dominio;
 
-import org.hibernate.annotations.DynamicUpdate;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
 
 
 @Entity
@@ -20,16 +14,20 @@ public class Imagen{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Getter @Setter
-	public Integer id = null;
+	private Integer id = null;
 	
 	@Column
-	@Getter @Setter
-	public Integer articulo_id;
+	private Integer articulo_id;
 	
 	@Column
-	@Getter @Setter
-	public String path;
+	private String path;
 
+	public Integer getID(){ return this.id; }
+
+	public Integer getArticuloID(){	return this.articulo_id;	}
+	public void setArticuloID(Integer newArticuloID){	this.articulo_id = newArticuloID;	}
+
+	public String getPath(){ return this.path; }
+	public void setPath(String newPath){ this.path = newPath; }
 	
 }

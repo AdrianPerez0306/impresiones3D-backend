@@ -1,6 +1,5 @@
 package com.mandarinaSolutions.impresiones3d.services;
 
-import java.util.List;
 
 import com.mandarinaSolutions.impresiones3d.exceptions.ArticuloEmptyCollectionException;
 import com.mandarinaSolutions.impresiones3d.exceptions.ArticuloIllegalNullException;

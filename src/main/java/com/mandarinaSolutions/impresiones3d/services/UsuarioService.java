@@ -2,7 +2,6 @@ package com.mandarinaSolutions.impresiones3d.services;
 
 import com.mandarinaSolutions.impresiones3d.DTO.UserDTO;
 import com.mandarinaSolutions.impresiones3d.dominio.Usuario;
-import com.mandarinaSolutions.impresiones3d.repository.RepositoryCategoria;
 import com.mandarinaSolutions.impresiones3d.repository.RepositoryUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

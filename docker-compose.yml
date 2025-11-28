@@ -1,0 +1,69 @@
+
+services:
+  # # 1. Servicio de la API (CulinaryCache)
+  # app:
+  #   container_name: culinarycache-app-server-dev
+  #   # Indica que construya la imagen usando el Dockerfile en este directorio
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile.dev
+
+  #   # Mapea el puerto del contenedor (8080) al puerto de tu máquina (8080)
+  #   ports:
+  #     - "8080:8080"
+  #     - "35729:35729"
+    
+  #   # Variables de entorno para que Spring Boot sepa dónde encontrar PostgreSQL
+  #   environment:
+  #     # CRÍTICO: La URL usa 'db' como hostname, que es el nombre del servicio de la DB
+  #     SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/culinarydb
+  #     SPRING_DATASOURCE_USERNAME: user
+  #     SPRING_DATASOURCE_PASSWORD: password
+  #     SPRING_PROFILES_ACTIVE: develop
+  #     SPRING_DEVTOOLS_LIVERELOAD_ENABLED: "true"
+  #     SPRING_DEVTOOLS_RESTART_ENABLED: "true"
+    
+  #   # Asegura que la DB se levante antes que la aplicación
+  #   depends_on:
+  #     - db
+    
+  #   # Política de reinicio: solo si falla (ideal para desarrollo)
+  #   restart: on-failure
+
+  #   volumes:
+  #     - .:/app          # Monta TODO el proyecto local en /app
+  #     - /app/target   # Excluye la carpeta 'target' del montaje para que Docker la maneje internamente
+
+  #   command: ["mvn", "spring-boot:run"]
+    
+# 2. MySQL Database
+  db:
+    container_name: v_laboratory_automotive_design_db
+    image: postgres:17-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=v_laboratory_automotive_design_db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: on-failure
+    ports:
+      - '5432:5432'
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container_event_nexus
+    restart: always
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@phm.edu.ar
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  postgres-data:
+    driver: local
+  pgadmin-data:
+    driver: local
